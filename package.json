@@ -1,5 +1,6 @@
 {
   "name": "mytube",
+  "homepage": "https://kleutons.github.io/mytube/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
