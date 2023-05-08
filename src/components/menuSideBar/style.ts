@@ -26,7 +26,7 @@ export const Container = styled.div<{$openMenu?:boolean, $screenWidth:string}>`
         display: ${({$openMenu}) => !$openMenu ? 'none' : '' };
     }
 
-    :hover{
+    &:hover{
         overflow-y: auto;
     }
 `;
