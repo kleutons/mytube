@@ -28,6 +28,7 @@ function App() {
       window.onresize = resize;
       useEffect(() => {
         resize();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [screenWidth]);
 
   return (
