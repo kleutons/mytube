@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
+import Main from './components/main';
+import Header from './components/header';
 
 function App() {
+  const [openMenu , setOpenMenu] = useState(false);
+  const [screenWidth , setScreenWidth] = useState('mobile');
+
+      //Function Scren Width
+      function resize() {
+        const screen = window.innerWidth;
+        if( screen <= 700) {
+          setScreenWidth('mobile');
+        }else if( screen < 1270 ){
+          setScreenWidth('tablet');
+        }else if( screen >= 1270){       
+          setScreenWidth('desktop');
+        }
+
+        if(screenWidth !== 'desktop' && openMenu){
+          setOpenMenu(false)
+        }else if(screenWidth === 'desktop' && !openMenu){
+          setOpenMenu(true)
+        }
+      }
+
+      window.onresize = resize;
+      useEffect(() => {
+        resize();
+      }, [screenWidth]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Header screenWidth={screenWidth} setScreenWidth={setScreenWidth} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+    <Main openMenu={openMenu} screenWidth={screenWidth} setOpenMenu={setOpenMenu} />
+    </>
   );
+  
 }
 
 export default App;
