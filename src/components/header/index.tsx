@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Container } from "./style";
 import { RiMenuLine } from 'react-icons/ri'
 import Logo from '../../assets/ytLogo.png';
