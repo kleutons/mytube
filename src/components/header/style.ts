@@ -83,6 +83,10 @@ export const SearchButton = styled.div`
     &:hover{
         background-color: #f0f0f0;
     }
+
+    @media screen and (max-width: 670px) {
+        width: 45px;
+    }
 `;
 
 export const HeaderButton = styled.div`
