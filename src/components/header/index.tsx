@@ -7,16 +7,17 @@ import {
     SearchButton,
     HeaderButton
 } from "./style";
-import { useEffect, useState} from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { 
     HiBars3,
     HiArrowSmallLeft,
     HiMagnifyingGlass,
     HiOutlineUserCircle,
-    HiMicrophone } from "react-icons/hi2";
+    HiMicrophone,
+    HiXMark } from "react-icons/hi2";
 import Logo from '../../assets/ytLogo.png';
-import ButtonIcon from "../button";
+import { ButtonIcon, ButtonText } from "../button";
 
 
 interface IProps{
@@ -31,10 +32,26 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
     //Context open
     const [ openBuscar, setOpenBuscar ] = useState(false);
     
-    //Function click openSearch 
-    function openSearch(){        
+    //Context clear imput
+    const [showBtnClear, setShowBtnClear] = useState(false);
+    const inputBuscarRef = useRef<HTMLInputElement>(null);
+    
+    //Function Reset/ Clear Input
+    function clearImput(){        
+        setShowBtnClear(false);
+        if (inputBuscarRef.current) {
+            inputBuscarRef.current.value = '';
+          }
+    }
+
+     //Function click openSearch 
+     function openSearch(){        
         setOpenBuscar(!openBuscar);
     }
+
+    // Function Show Menu SideBar
+    const showMenu = () => {setOpenMenu(!openMenu)};
+
 
     useEffect(() => {
         if( screenWidth !== 'mobile'){
@@ -43,11 +60,6 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
      }, [screenWidth]);
 
     
-    
-
-
-    // Function Show Menu SideBar
-    const showMenu = () => {setOpenMenu(!openMenu)};
     
     return( 
         <Container>
@@ -61,7 +73,11 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
                                 <ButtonIcon onClick={() => openSearch()} svgIcon={<HiArrowSmallLeft />}  margin='0 3px' />  : null
                             } 
                 <SearchInputContainer>
-                    <SearchInput placeholder="Pesquisar"/>
+                    <SearchInput onChange={(event) => { setShowBtnClear(event.target.value !== ''); } } placeholder="Pesquisar" ref={inputBuscarRef} />
+                    { showBtnClear ? 
+                        <ButtonIcon onClick={clearImput} svgIcon={<HiXMark />} margin="0 -10px" /> : null 
+                    }
+                    
                 </SearchInputContainer>
                 <SearchButton>
                     <ButtonIcon svgIcon={<HiMagnifyingGlass />} hover={false} />
@@ -74,10 +90,8 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
                     { screenWidth === 'mobile' ? 
                         <ButtonIcon onClick={() => openSearch()} svgIcon={<HiMagnifyingGlass />} />
                           : null
-                    }  
-                    <div className="btnLogin" >
-                    <HiOutlineUserCircle />
-                    Fazer Login</div>
+                    }
+                    <ButtonText svgIcon={<HiOutlineUserCircle />} text={ screenWidth === 'mobile'? 'Login' : 'Fazer Login'} />
                 </> 
             </HeaderButton>
             

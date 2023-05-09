@@ -1,21 +1,30 @@
-import { BtnIcon } from "./style";
+import { BtnIcon, BtnText } from "./style";
 
 
 interface IProps{
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     svgIcon: React.ReactNode,
     text?: string,
+    color?: string,
     margin?: string,
     hover?: boolean 
 }
 
-function ButtonIcon( { onClick, svgIcon, text, margin, hover=true }: IProps){
+function ButtonIcon( { onClick, svgIcon, color, margin, hover=true }: IProps){
     return(
-        <BtnIcon onClick={onClick} margin={margin} hover={hover}>
+        <BtnIcon onClick={onClick} color={color} margin={margin} hover={hover}>
             {svgIcon ? svgIcon : null}
-            {text ? text : null}
         </BtnIcon>
     )
 }
 
-export default ButtonIcon;
+function ButtonText( { onClick, svgIcon, text, color, margin }: IProps ){
+    return(
+        <BtnText onClick={onClick} color={color} margin={margin} >
+            {svgIcon ? svgIcon : null}
+            {text ? text : null}
+        </BtnText>
+    )
+}
+
+export { ButtonIcon, ButtonText };

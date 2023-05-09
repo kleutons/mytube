@@ -90,12 +90,13 @@ export const SearchButton = styled.div`
 `;
 
 export const HeaderButton = styled.div`
-    width: 180px;
+    margin-right: 20px;
     display: flex;
+    align-items: center;
 
     div.btnLogin{
         margin: 0 5px;
-        padding: 7px;
+        padding: 4px 7px;
         display: flex;
         align-items: center;
         justify-content: center;

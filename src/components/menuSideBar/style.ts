@@ -29,6 +29,9 @@ export const Container = styled.div<{$openMenu?:boolean, $screenWidth:string}>`
     &:hover{
         overflow-y: auto;
     }
+    @media screen and (max-width: 670px) {
+        overflow-y: auto;
+    }
 `;
 
 export const ContentMenu = styled.div`
