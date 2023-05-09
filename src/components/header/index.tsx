@@ -72,10 +72,7 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
             <HeaderButton>
                 <>
                     { screenWidth === 'mobile' ? 
-                        <>
                         <ButtonIcon onClick={() => openSearch()} svgIcon={<HiMagnifyingGlass />} />
-                        <ButtonIcon svgIcon={<HiMicrophone />}  />
-                        </>
                           : null
                     }  
                     <div className="btnLogin" >
