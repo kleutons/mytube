@@ -62,9 +62,10 @@ export const SearchInputContainer = styled.div`
 `;
 export const SearchInput = styled.input`
     width: 100%;
-    height: 25px;
+    height: 27px;
     outline: none;
     border: none;
+    font-size: 15px;
 `;
 
 export const SearchButton = styled.div`
