@@ -85,7 +85,7 @@ export const SearchButton = styled.div`
 `;
 
 export const HeaderButton = styled.div`
-    width: 230px;
+    width: 180px;
     display: flex;
 
     div.btnLogin{
@@ -94,7 +94,7 @@ export const HeaderButton = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 15px;
+        font-size: 14px;
         line-height: 25px;
         border-radius: 30px;
         border: 1px solid #ccc;
