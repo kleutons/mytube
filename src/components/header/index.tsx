@@ -58,7 +58,7 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
 
             <SearchContainer openSearchMoblie={openBuscar}>
                 { openBuscar  ? 
-                                <ButtonIcon onClick={() => openSearch()} svgIcon={<HiArrowSmallLeft />}  margin='0 10px 0 0' />  : null
+                                <ButtonIcon onClick={() => openSearch()} svgIcon={<HiArrowSmallLeft />}  margin='0 3px' />  : null
                             } 
                 <SearchInputContainer>
                     <SearchInput placeholder="Pesquisar"/>
@@ -66,7 +66,7 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
                 <SearchButton>
                     <ButtonIcon svgIcon={<HiMagnifyingGlass />} hover={false} />
                 </SearchButton>
-                <ButtonIcon svgIcon={<HiMicrophone />} margin="0 10px" />
+                <ButtonIcon svgIcon={<HiMicrophone />} margin="0 5px" />
             </SearchContainer>
 
             <HeaderButton>
