@@ -24,7 +24,7 @@ function MenuSideBar( {$openMenu, $screenWidth}: IProps){
 
     const navigate = useNavigate();
 
-    const [menuItems, setMenuItems ] = useState([
+    const [menuItems] = useState([
         { id: 1, name: 'Home',         icon: <RiHome4Line />,        link: '/' },
         { id: 2, name: 'Shorts',       icon: <BsFileEarmarkPlay />,  link: '/shorts' },
         { id: 3, name: 'Inscrições',   icon: <BsCollectionPlay />,   link: '/subscriptions' },
