@@ -25,12 +25,12 @@ function MenuSideBar( {$openMenu, $screenWidth}: IProps){
     const navigate = useNavigate();
 
     const [menuItems] = useState([
-        { id: 1, name: 'Home',         icon: <RiHome4Line />,        link: '/' },
-        { id: 2, name: 'Shorts',       icon: <BsFileEarmarkPlay />,  link: '/shorts' },
-        { id: 3, name: 'Inscrições',   icon: <BsCollectionPlay />,   link: '/subscriptions' },
-        { id: 4, name: 'Biblioteca',   icon: <RiVideoChatLine />,    link: '/library' },
+        { id: 1, name: 'Home',         icon: <RiHome4Line />,        link: '/mytube' },
+        { id: 2, name: 'Shorts',       icon: <BsFileEarmarkPlay />,  link: '/mytube/shorts' },
+        { id: 3, name: 'Inscrições',   icon: <BsCollectionPlay />,   link: '/mytube/subscriptions' },
+        { id: 4, name: 'Biblioteca',   icon: <RiVideoChatLine />,    link: '/mytube/library' },
         { id: 5, name: 'Separator',    icon: '',                   link: '' },
-        { id: 6, name: 'Historico',    icon: <RiHistoryLine />,      link: '/history' },
+        { id: 6, name: 'Historico',    icon: <RiHistoryLine />,      link: '/mytube/history' },
         { id: 7, name: 'Configurações',icon: <RiSettings5Line />,    link: '/' },
         { id: 8, name: 'Separator',    icon: '',                   link: '' },
         { id: 9, name: 'Denúncia',     icon: <RiFlagLine />,         link: '/' },

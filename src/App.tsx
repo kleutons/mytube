@@ -58,12 +58,12 @@ function App() {
             <SectionMain>
               <Routes>
                 <Route />
-                <Route path='/' element={<Home />} />
-                <Route path='/shorts' element={<Shorts />} />
-                <Route path='/subscriptions' element={<Subscriptions />} />
-                <Route path='/library' element={<Library />} />
-                <Route path='/history' element={<History />}/>
-                <Route path='/login' element={<Login />}/>
+                <Route path='/mytube/' element={<Home />} />
+                <Route path='/mytube/shorts' element={<Shorts />} />
+                <Route path='/mytube/subscriptions' element={<Subscriptions />} />
+                <Route path='/mytube/library' element={<Library />} />
+                <Route path='/mytube/history' element={<History />}/>
+                <Route path='/mytube/login' element={<Login />}/>
               </Routes>
             </SectionMain>
         </Container>
