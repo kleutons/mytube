@@ -24,7 +24,6 @@ export const BtnIcon = styled.div<{margin?:string, color?:string, hover?:boolean
 
 
 export const BtnText = styled.div<{margin?:string, color?:string}>`
-
     margin: ${({margin}) => margin ? margin : '0 5px'};
     padding: 4px 7px;
     display: flex;
