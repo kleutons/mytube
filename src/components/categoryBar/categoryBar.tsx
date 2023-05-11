@@ -68,7 +68,7 @@ function CategoryBar(){
  
             <ContainerCategory ref={contentRef} >
                 {categoryButtons.map((button, index) => (
-                <ButtonCategory tabIndex={0} onClick={(event) => { 
+                <ButtonCategory key={index} tabIndex={0} onClick={(event) => { 
                                                 searchCategory(button.id);
                                                 event.currentTarget.focus();
                                                }} >{button.name}</ButtonCategory>

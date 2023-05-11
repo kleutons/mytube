@@ -10,6 +10,7 @@ import Subscriptions from './pages/subscriptions';
 import Library from './pages/library';
 import Login from './pages/login';
 import History from './pages/history';
+import ReportHistory from './pages/reportHistory';
 
 function App() {
   const [openMenu , setOpenMenu] = useState(false);
@@ -50,6 +51,7 @@ function App() {
     <>
     <GlobalStyle />
     <BrowserRouter>
+    
       <Header screenWidth={screenWidth} setScreenWidth={setScreenWidth} openMenu={openMenu} setOpenMenu={setOpenMenu} />
       
         <Container $openMenu={openMenu} $screenWidth={screenWidth}>
@@ -57,13 +59,13 @@ function App() {
             {screenWidth !== 'desktop' && openMenu ? <ScrimMenu onClick={() => setOpenMenu(false)} /> : null}
             <SectionMain>
               <Routes>
-                <Route />
                 <Route path='/mytube/' element={<Home />} />
                 <Route path='/mytube/shorts' element={<Shorts />} />
                 <Route path='/mytube/subscriptions' element={<Subscriptions />} />
                 <Route path='/mytube/library' element={<Library />} />
                 <Route path='/mytube/history' element={<History />}/>
                 <Route path='/mytube/login' element={<Login />}/>
+                <Route path='/mytube/reporthistory' element={<ReportHistory />}/>
               </Routes>
             </SectionMain>
         </Container>

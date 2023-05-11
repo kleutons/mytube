@@ -22,7 +22,7 @@ export const Container = styled.div<{$openMenu?:boolean, $screenWidth:string}>`
     overflow: hidden;
     display:  ${({$screenWidth, $openMenu}) => $screenWidth === 'mobile' && !$openMenu ? 'none' : '' };
 
-    div:nth-child(n+5) {
+    div:nth-child(n+7) {
         display: ${({$openMenu}) => !$openMenu ? 'none' : '' };
     }
 
@@ -31,6 +31,15 @@ export const Container = styled.div<{$openMenu?:boolean, $screenWidth:string}>`
     }
     @media screen and (max-width: 670px) {
         overflow-y: auto;
+    }
+    span{
+        display: ${({$openMenu}) => !$openMenu ? 'none' : 'flex' };
+        font-size: 13px;
+        padding: 0 20px;
+    }
+    div.sobre{
+        margin-top: 50px;
+        font-size: 12px;
     }
 `;
 

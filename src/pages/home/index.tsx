@@ -34,8 +34,6 @@ function Home(){
 
     useEffect(() => {
         load();
-        console.log(categoryId);
-
       // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [categoryId])
     

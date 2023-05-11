@@ -32,7 +32,7 @@ export const LogoContainer = styled.div`
     min-width: var(--menuOpen);
 `;
 
-export const SearchContainer = styled.div<{openSearchMoblie?:boolean}>`
+export const SearchContainer = styled.div<{opensearchmoblie?:string}>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,7 @@ export const SearchContainer = styled.div<{openSearchMoblie?:boolean}>`
     flex: 1;
 
     @media screen and (max-width: 670px) {
-        display: ${({openSearchMoblie}) => openSearchMoblie? 'flex' : 'none'};
+        display: ${({opensearchmoblie}) => opensearchmoblie === 'true' ? 'flex' : 'none'};
         position: fixed;
         width: 100%;
         margin: 0;

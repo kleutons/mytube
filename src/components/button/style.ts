@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BtnIcon = styled.div<{margin?:string, color?:string, hover?:boolean}>`
+export const BtnIcon = styled.div<{margin?:string, color?:string, hover?:string}>`
     display: flex;
     justify-content: center;
     border-radius: 50%;

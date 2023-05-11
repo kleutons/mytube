@@ -18,6 +18,7 @@ import {
     HiXMark } from "react-icons/hi2";
 import Logo from '../../assets/ytLogo.png';
 import { ButtonIcon, ButtonText } from "../button";
+import { useNavigate } from "react-router-dom";
 
 
 interface IProps{
@@ -28,6 +29,8 @@ interface IProps{
 }
 
 function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){  
+
+    const navigate = useNavigate();
 
     //Context open
     const [ openBuscar, setOpenBuscar ] = useState(false);
@@ -64,11 +67,11 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
     return( 
         <Container>
             <LogoContainer>
-                <ButtonIcon onClick={showMenu} svgIcon={<HiBars3/>} margin="0 20px;"/>
-                <img style={{cursor: 'pointer', width: '100px', objectFit: 'contain'}} src={Logo} alt='' />
+                <ButtonIcon onClick={showMenu} svgIcon={<HiBars3/>} margin="0 20px;" hover />
+                <img onClick={() => navigate('/mytube')}  style={{cursor: 'pointer', width: '100px', objectFit: 'contain'}} src={Logo} alt='' />
             </LogoContainer>
 
-            <SearchContainer openSearchMoblie={openBuscar}>
+            <SearchContainer opensearchmoblie={openBuscar.toString()}>
                 { openBuscar  ? 
                                 <ButtonIcon onClick={() => openSearch()} svgIcon={<HiArrowSmallLeft />}  margin='0 3px' />  : null
                             } 
@@ -80,18 +83,18 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
                     
                 </SearchInputContainer>
                 <SearchButton>
-                    <ButtonIcon svgIcon={<HiMagnifyingGlass />} hover={false} />
+                    <ButtonIcon svgIcon={<HiMagnifyingGlass />} />
                 </SearchButton>
-                <ButtonIcon svgIcon={<HiMicrophone />} margin="0 5px" />
+                <ButtonIcon svgIcon={<HiMicrophone />} margin="0 5px" hover />
             </SearchContainer>
 
             <HeaderButton>
                 <>
                     { screenWidth === 'mobile' ? 
-                        <ButtonIcon onClick={() => openSearch()} svgIcon={<HiMagnifyingGlass />} />
+                        <ButtonIcon onClick={() => openSearch()} svgIcon={<HiMagnifyingGlass />} hover />
                           : null
                     }
-                    <ButtonText svgIcon={<HiOutlineUserCircle />} text={ screenWidth === 'mobile'? 'Login' : 'Fazer Login'} />
+                    <ButtonText onClick={() => navigate('/mytube/login')} svgIcon={<HiOutlineUserCircle />} text={ screenWidth === 'mobile'? 'Login' : 'Fazer Login'} />
                 </> 
             </HeaderButton>
             

@@ -7,13 +7,16 @@ interface IProps{
     text?: string,
     color?: string,
     margin?: string,
-    hover?: boolean 
+    hover?: boolean
 }
 
-function ButtonIcon( { onClick, svgIcon, color, margin, hover=true }: IProps){
+function ButtonIcon( props: IProps){
+
+    const hoverProp = props.hover ? true : null;
+
     return(
-        <BtnIcon onClick={onClick} color={color} margin={margin} hover={hover}>
-            {svgIcon ? svgIcon : null}
+        <BtnIcon onClick={props.onClick} color={props.color} margin={props.margin} {...(hoverProp && { hover: 'true' })} >
+            {props.svgIcon ? props.svgIcon : null}
         </BtnIcon>
     )
 }

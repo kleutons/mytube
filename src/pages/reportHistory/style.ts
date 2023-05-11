@@ -7,7 +7,9 @@ export const Container = styled.div`
     justify-content: center;
     margin-top: 60px;
     
-
+    p{
+        width: 70%;
+    }
     svg.svgTitle{
         height: 120px;
         width: 120px;
