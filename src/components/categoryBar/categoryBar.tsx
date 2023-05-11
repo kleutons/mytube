@@ -42,8 +42,6 @@ function CategoryBar(){
       ];
 
       const {setCategoryId} = useCategoryContext();
-      
-      const categoryIdSelect = useCategoryContext().categoryId;
 
       function searchCategory(id: string) {
         setCategoryId(id)
