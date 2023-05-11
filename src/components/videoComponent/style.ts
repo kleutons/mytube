@@ -12,8 +12,9 @@ export const Container = styled.div`
 
 export const ImageBanner = styled.img`
     width: 100%;
-    height: auto;
+    max-height: 170px;
     border-radius: 12px;
+    margin-bottom: 5px;
 
     &:hover{
         border-radius: 0;
@@ -25,10 +26,11 @@ export const TitleContainer = styled.div`
     display: flex;
 `;
 
-export const ChannelImage = styled.div`
-    background-color: beige;
-    width: 40px;
-    height: 40px;
+export const ChannelImage = styled.div<{color?:string}>`
+    background-color: ${({color}) => color ? color : 'beige'};
+    color: ${({color}) => color ? '#fff' : 'currentColor'};
+    min-width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;

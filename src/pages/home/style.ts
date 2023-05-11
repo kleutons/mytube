@@ -9,5 +9,6 @@ export const Container = styled.div`
 
     > div{
         flex: 1 1 290px;
+        min-height: 300px;
     }
 `;

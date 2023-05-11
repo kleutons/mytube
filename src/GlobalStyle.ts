@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
   *::-webkit-scrollbar{
     width: 8px;
+    height: 8px;
   }
 
   *::-webkit-scrollbar-thumb{
@@ -44,12 +45,13 @@ export const ScrimMenu = styled.div`
 `;
 
 export const SectionMain = styled.section`
-    width: 100%;
+    width: calc(100% - 80px);
     padding: 30px 40px;
     padding-top: 5px;
     max-width: 1600px;
 
     @media screen and (max-width: 900px) {
         padding: 10px 10px;
+        width: calc(100% - 20px);
     }
 `;
