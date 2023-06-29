@@ -15,16 +15,19 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { ButtonText } from "../button";
 import { HiOutlineUserCircle } from "react-icons/hi2";
+import useAuth from "../../hooks/useAuth";
 
 interface IProps{
     $openMenu: boolean;
+    setOpenMenu: (value: boolean) => void;
     $screenWidth: string;
 }
 
 
 
-function MenuSideBar( {$openMenu, $screenWidth}: IProps){
-
+function MenuSideBar( {$openMenu, setOpenMenu, $screenWidth}: IProps){
+    const { logged } = useAuth();
+    
     const navigate = useNavigate();
 
     const [menuItems] = useState([
@@ -59,13 +62,23 @@ function MenuSideBar( {$openMenu, $screenWidth}: IProps){
                     item.name === 'Separator' ? (
                     <Separator key={item.id} />
                     ) : item.name === 'Login' ? (
-                        <React.Fragment key={item.id}>
-                        <span key="login-info">Faça login para curtir vídeos, comentar e se inscrever.</span>
-                        <ButtonText key="login-button" onClick={() => navigate('/mytube/login')} svgIcon={<HiOutlineUserCircle />} text='Fazer Login' margin="7px 20px" />
-                        <Separator key="login-separator" />
-                        </React.Fragment>
+
+
+                        logged ? (
+                            null
+                          ) : (
+                            <>
+                            <React.Fragment key={item.id}>
+                            <span key="login-info">Faça login para curtir vídeos, comentar e se inscrever.</span>
+                            <ButtonText key="login-button" onClick={() => navigate('/mytube/login')} svgIcon={<HiOutlineUserCircle />} text='Fazer Login' margin="7px 20px" />
+                            <Separator key="login-separator" />
+                            </React.Fragment>
+                            </>
+                          )
+                        
+                        
                     ): (
-                    <MenuItem key={item.id} onClick={() => openLink(item.link)}>
+                    <MenuItem key={item.id} onClick={() => { openLink(item.link); if($screenWidth !== 'desktop'){setOpenMenu(false)} }}>
                         {item.icon}
                         {item.name}
                     </MenuItem>
@@ -74,11 +87,11 @@ function MenuSideBar( {$openMenu, $screenWidth}: IProps){
 
                 <div className="sobre">
                 Sobre:<br />
-                Importante ressaltar que este site não está associado ao YouTube, foi  criado para o aprimoramento das habilidades no estudo de programação web.
+                Este site não está associado ao YouTube, foi  criado para o aprimoramento de habilidades de programação web.<br />
                 Tecnologias usadas: Html, Css, JavaScript, React, TypeScript e NodeJs.<br />
                 <br />
                 Contato <br />
-                2023 - Dev: Kleuton Novais
+                2023 - <a href="https://www.linkedin.com/in/kleuton-novais/" target="_blank"> Dev: Kleuton Novais</a>
                 </div>
             </ContentMenu>
         </Container>

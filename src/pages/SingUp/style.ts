@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
-  box-sizing: border-box;
+
 `;
 
 export const Content = styled.form`
@@ -21,7 +22,6 @@ export const Content = styled.form`
   border: 1px solid #dadce0;
   max-width: 450px;
   border-radius: 8px;
-  box-sizing: border-box;
 
   >img{
     width: 90px;
@@ -34,27 +34,10 @@ export const Content = styled.form`
     color: #202124;
     margin: 0;
   }
-  >span{
+  >span:first-of-type{
     margin-bottom: 23px;
   }
-`;
 
-export const ContentShowPass = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  gap: 5px;
-  width: 100%;
-  padding-left: 15px;
-  margin-top: -5px;
-  cursor: pointer;
-
-  >input{
-    width: 18px;
-    cursor: pointer;
-  }
-  >label{
-    cursor: pointer;
-  }
 `;
 
 export const Footer = styled.div`
@@ -76,10 +59,42 @@ export const Footer = styled.div`
       color: #174ea6;
       background-color: #f6fafe;
     }
-    label{
-      color: red;
-    }
 `;
+
+export const ContentPass = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const SpanPass = styled.span`
+  padding: 0 15px;
+  font-size: 13px;
+  margin-top: -10px;
+  color: #5f6368;
+  cursor: pointer;
+  
+  >input{
+    width: 18px;
+    cursor: pointer;
+  }
+  >label{
+    cursor: pointer;
+  }
+`;
+
+export const ContentShowPass = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  width: 100%;
+  padding-left: 15px;
+  margin-top: -5px;
+
+  >input{
+    width: 18px;
+  }
+`;
+
 
 export const labelError = styled.label`
   font-size: 14px;

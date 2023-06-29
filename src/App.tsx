@@ -1,18 +1,52 @@
-import { useState, useEffect } from 'react';
-import { GlobalStyle, Container, ScrimMenu, SectionMain } from './GlobalStyle';
-
+import { useState, useEffect, ReactNode } from 'react';
+import { GlobalStyle, Container, SectionMain, ScrimMenu } from './GlobalStyle';
 import Header from './components/header';
 import MenuSideBar from './components/menuSideBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './pages/login';
+import SingUp from './pages/SingUp';
 import Home from './pages/home';
 import Shorts from './pages/shorts';
 import Subscriptions from './pages/subscriptions';
 import Library from './pages/library';
-import Login from './pages/login';
 import History from './pages/history';
 import ReportHistory from './pages/reportHistory';
+import Watch from './pages/watch';
+
+ 
 
 function App() {
+
+
+  return (
+    <>
+    <GlobalStyle />
+
+    <BrowserRouter>
+      <Routes>
+        <Route path='/mytube/login'         element={<LayoutLogin> <Login /> </LayoutLogin>} />
+        <Route path='/mytube/signup'        element={<LayoutLogin> <SingUp /> </LayoutLogin>} />
+        <Route path='/mytube'               element={<LayoutMain> <Home /> </LayoutMain>} />
+        <Route path='/mytube/shorts'        element={<LayoutMain> <Shorts /> </LayoutMain>} />
+        <Route path='/mytube/subscriptions' element={<LayoutMain> <Subscriptions /> </LayoutMain>} />
+        <Route path='/mytube/library'       element={<LayoutMain> <Library /> </LayoutMain>} />
+        <Route path='/mytube/history'       element={<LayoutMain> <History /> </LayoutMain>} />
+        <Route path='/mytube/reporthistory' element={<LayoutMain> <ReportHistory /> </LayoutMain>} />
+        <Route path='/mytube/watch'         element={<LayoutMain> <Watch /> </LayoutMain>} />
+      </Routes>
+    </BrowserRouter>
+ 
+    </>
+  );
+  
+}
+
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const LayoutMain = ({ children }:LayoutProps) => {
+
   const [openMenu , setOpenMenu] = useState(false);
   const [screenWidth , setScreenWidth] = useState('mobile');
 
@@ -49,30 +83,25 @@ function App() {
 
   return (
     <>
-    <GlobalStyle />
-    <BrowserRouter>
-    
       <Header screenWidth={screenWidth} setScreenWidth={setScreenWidth} openMenu={openMenu} setOpenMenu={setOpenMenu} />
-      
         <Container $openMenu={openMenu} $screenWidth={screenWidth}>
-            <MenuSideBar $openMenu={openMenu} $screenWidth={screenWidth} />
-            {screenWidth !== 'desktop' && openMenu ? <ScrimMenu onClick={() => setOpenMenu(false)} /> : null}
-            <SectionMain>
-              <Routes>
-                <Route path='/mytube/' element={<Home />} />
-                <Route path='/mytube/shorts' element={<Shorts />} />
-                <Route path='/mytube/subscriptions' element={<Subscriptions />} />
-                <Route path='/mytube/library' element={<Library />} />
-                <Route path='/mytube/history' element={<History />}/>
-                <Route path='/mytube/login' element={<Login />}/>
-                <Route path='/mytube/reporthistory' element={<ReportHistory />}/>
-              </Routes>
-            </SectionMain>
-        </Container>
-      </BrowserRouter>
+        <MenuSideBar $openMenu={openMenu} setOpenMenu={setOpenMenu} $screenWidth={screenWidth} />
+        {screenWidth !== 'desktop' && openMenu ? <ScrimMenu onClick={() => setOpenMenu(false)} /> : null}
+        <SectionMain>
+          {children}
+        </SectionMain>
+        </Container>      
     </>
   );
-  
-}
+};
+
+const LayoutLogin = ({ children }:LayoutProps) => {
+  return (
+    <>
+      {children}      
+    </>
+  );
+};
+
 
 export default App;

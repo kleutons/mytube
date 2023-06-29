@@ -9,6 +9,8 @@ export const GlobalStyle = createGlobalStyle`
   *{
   scrollbar-width: 10px;
   scrollbar-color: #8c8c8c;
+  margin: 0;
+  padding: 0;
   }
 
   *::-webkit-scrollbar{

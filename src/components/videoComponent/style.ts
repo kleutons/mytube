@@ -10,6 +10,8 @@ export const Container = styled.div`
     }
 `;
 
+
+
 export const ImageBanner = styled.img`
     width: 100%;
     max-height: 170px;
@@ -51,4 +53,27 @@ export const Title = styled.span`
 export const TextCard = styled.span`
     color: #8c8c8c;
     font-size: 14px;
+`;
+
+export const ContainerSideBar = styled.div`
+    max-width: 330px;
+    margin: 8px 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+
+    @media screen and (max-width: 700px) {
+        max-width: 290px;
+    }
+`;
+
+export const ImageBannerSideBar = styled.img`
+    max-height: 94px;
+    border-radius: 12px;
+    margin-bottom: 5px;
+
+    &:hover{
+        border-radius: 0;
+    }
 `;

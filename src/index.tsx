@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
+import { AuthProvider } from './contexts/AuthContext';
 import { CategoryProvider } from './contexts/searchCategories';
 
 const root = ReactDOM.createRoot(
@@ -10,9 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-     <CategoryProvider>/
+    <AuthProvider>
+     <CategoryProvider>
       <App />
      </CategoryProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 

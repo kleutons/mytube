@@ -1,7 +1,4 @@
-import { 
-    ChannelImage,
-    Container, ImageBanner, TextCard, TextContainer, Title, TitleContainer
-} from "./style";
+import * as C from "./style";
 
 interface Props{
     title: string,
@@ -9,7 +6,8 @@ interface Props{
     channelImage: string,
     colorchannelImage?: string
     channelName: string,
-    details: string,
+    details?: string,
+    onclick?: () => void;
 }
 
 function limitarTexto(texto:string, limite:number) {
@@ -43,20 +41,37 @@ function limitarTexto(texto:string, limite:number) {
 
 function VideoComponent(props: Props){
     return(
-        <Container>
-            <ImageBanner alt="thumbnail" src={props.thumbnail} />
-            <TitleContainer >
-                <ChannelImage color={randomBackground()} >
+        <C.Container onClick={props.onclick}>
+            <C.ImageBanner alt="thumbnail" src={props.thumbnail} />
+            <C.TitleContainer >
+                <C.ChannelImage color={randomBackground()} >
                     {props.channelImage}
-                </ChannelImage>1
-                <TextContainer>
-                    <Title>{limitarTexto(props.title, 50)}</Title>
-                    <TextCard>{props.channelName}</TextCard>
-                    <TextCard>{props.details}</TextCard>
-                </TextContainer>
-            </TitleContainer>
-        </Container>
+                </C.ChannelImage>
+                <C.TextContainer>
+                    <C.Title>{limitarTexto(props.title, 50)}</C.Title>
+                    <C.TextCard>{props.channelName}</C.TextCard>
+                    <C.TextCard>{props.details}</C.TextCard>
+                </C.TextContainer>
+            </C.TitleContainer>
+        </C.Container>
     )
 }
 
-export default VideoComponent;
+
+function VideoSideBar(props: Props){
+    return(
+        <C.ContainerSideBar onClick={props.onclick}>
+        <C.ImageBannerSideBar alt="thumbnail" src={props.thumbnail} />
+        <C.TitleContainer >
+            <C.TextContainer>
+                <C.Title>{limitarTexto(props.title, 50)}</C.Title>
+                <C.TextCard>{props.channelName}</C.TextCard>
+                <C.TextCard>{props.details}</C.TextCard>
+            </C.TextContainer>
+        </C.TitleContainer>
+    </C.ContainerSideBar>
+    )
+}
+
+
+export { VideoComponent, VideoSideBar } ;

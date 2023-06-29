@@ -11,6 +11,7 @@ export const BtnIcon = styled.div<{margin?:string, color?:string, hover?:string}
     width: 24px;
     height: 24px;
     background-color: ${({color}) => color ? color : ''};
+    user-select:none;
 
     > svg{
         width: 24px;
@@ -38,6 +39,7 @@ export const BtnText = styled.div<{margin?:string, color?:string}>`
     color: ${({color}) => color ? color : '#065fd4'};
     cursor: pointer;
     white-space: nowrap;
+    user-select:none;
 
     > svg{
         color: currentColor;
@@ -49,4 +51,22 @@ export const BtnText = styled.div<{margin?:string, color?:string}>`
     &:hover{
         background-color: #def1ff;
     }
+`;
+
+export const ButtonLog = styled.button`
+  padding: 13px 20px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  min-width: 110px;
+  cursor: pointer;
+  background-color: #046ee5;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  user-select:none;
+
+  &:hover{
+    background-color: #1b66c9;
+  }
 `;

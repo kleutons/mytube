@@ -5,7 +5,7 @@ import {
     SearchInputContainer,
     SearchInput,
     SearchButton,
-    HeaderButton
+    HeaderButton,
 } from "./style";
 import { useEffect, useState, useRef } from "react";
 
@@ -15,10 +15,16 @@ import {
     HiMagnifyingGlass,
     HiOutlineUserCircle,
     HiMicrophone,
-    HiXMark } from "react-icons/hi2";
+    HiXMark,
+    HiOutlineVideoCamera,
+    HiOutlineBell
+ } from "react-icons/hi2";
+
 import Logo from '../../assets/ytLogo.png';
 import { ButtonIcon, ButtonText } from "../button";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import MenuUser from "../menuUser";
 
 
 interface IProps{
@@ -29,6 +35,7 @@ interface IProps{
 }
 
 function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){  
+    const { logged } = useAuth();
 
     const navigate = useNavigate();
 
@@ -60,12 +67,15 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
         if( screenWidth !== 'mobile'){
             setOpenBuscar(false);
         }
+
+    
      }, [screenWidth]);
 
     
-    
     return( 
+        <>
         <Container>
+            
             <LogoContainer>
                 <ButtonIcon onClick={showMenu} svgIcon={<HiBars3/>} margin="0 20px;" hover />
                 <img onClick={() => navigate('/mytube')}  style={{cursor: 'pointer', width: '100px', objectFit: 'contain'}} src={Logo} alt='' />
@@ -94,12 +104,22 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
                         <ButtonIcon onClick={() => openSearch()} svgIcon={<HiMagnifyingGlass />} hover />
                           : null
                     }
-                    <ButtonText onClick={() => navigate('/mytube/login')} svgIcon={<HiOutlineUserCircle />} text={ screenWidth === 'mobile'? 'Login' : 'Fazer Login'} />
+
+                    { logged ?
+                        <>
+                        <ButtonIcon onClick={() => navigate('/mytube/library')} svgIcon={<HiOutlineVideoCamera />} hover/>
+                            
+                            { screenWidth === 'mobile'? null :  <ButtonIcon svgIcon={<HiOutlineBell />} hover />   }
+                            <MenuUser />
+                        </>
+                        :
+                        <ButtonText onClick={() => navigate('/mytube/login')} svgIcon={<HiOutlineUserCircle />} text={ screenWidth === 'mobile'? 'Login' : 'Fazer Login'} />
+                    }
                 </> 
             </HeaderButton>
-            
-            
+            {/* <Testebt /> */}
         </Container>
+        </>
     )
 
 }

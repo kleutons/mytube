@@ -57,6 +57,7 @@ export const MenuItem = styled.div`
     margin: 5px 0;
     padding: var(--mItemPadding);
     flex-direction: var(--mItemDirection);
+    user-select:none;
 
     > svg{
         margin: var(--mItemSvgMargin);        
