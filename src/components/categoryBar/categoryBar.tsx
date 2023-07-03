@@ -41,7 +41,7 @@ function CategoryBar(){
         {name: 'Beleza', id: '24'},
       ];
 
-      const {setCategoryId} = useCategoryContext();
+      const {categoryId, setCategoryId} = useCategoryContext();
 
       function searchCategory(id: string) {
         setCategoryId(id)
@@ -68,10 +68,16 @@ function CategoryBar(){
  
             <ContainerCategory ref={contentRef} >
                 {categoryButtons.map((button, index) => (
-                <ButtonCategory key={index} tabIndex={0} onClick={(event) => { 
-                                                searchCategory(button.id);
-                                                event.currentTarget.focus();
-                                               }} >{button.name}</ButtonCategory>
+                <ButtonCategory 
+                  key={index} 
+                  tabIndex={0} 
+                  select={button.id === categoryId ? 'true' : 'false'}
+                  onClick={(event) => { 
+                            searchCategory(button.id);
+                            event.currentTarget.focus();
+                            }}>
+                  {button.name}
+                </ButtonCategory>
                 ))} 
                 
                 
