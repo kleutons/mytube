@@ -277,19 +277,18 @@ const SubPageHome = () => {
                 {
                     videosUser?.map((data:Videos) => (
                         // Realize as operações desejadas com cada vídeo
-                        <>
-                        <div key={data.id + 'div'}>
+                        
+                        <div key={`${data.id} ${data.title}`}>
                             <VideoComponent                            
                                 title={data.title} 
                                 thumbnail={data.url} 
-                                channelImage={user_data.nome.charAt(0).toUpperCase()} 
+                                channelImage='img/lgChannel.jpg' 
                                 channelName={data.description}
                                 details={`Data Envio: ${getPublishedTime(data.date)}`} 
-                                key={data.id}
                             />
                             <span className='excluir' onClick={() => deleteVideoId(data.id)}>X Excluir</span>                            
                         </div>
-                        </>
+                        
                         
                     ))
                 }
@@ -363,7 +362,7 @@ const SubPageChannels = () => {
             <h3>Inscrições Exemplos:</h3>
             <C.ContainerVideoInsc>
             {imagens.map((imagem) => (
-                <div>
+                <div key={imagem.name}>
                 <img className='insc' key={imagem.id} src={imagem.icon} alt={`Imagem ${imagem.id}`} />
                 <span>{imagem.name}</span>
                 <span className='button'>Inscrito</span>

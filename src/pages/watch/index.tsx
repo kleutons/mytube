@@ -47,7 +47,6 @@ function Watch(){
                 <div id='containerIframe'>
                   
                   <iframe
-                    key={`iframe {videoUrl}`}
                     src={videoUrl}
                     title="YouTube video player"
                     frameBorder='0'
@@ -58,7 +57,7 @@ function Watch(){
                 </div>
                 <div>
                   {data?.map((item) => (
-                      <>
+                      <div key={item.video.snippet.channelTitle}>
                         <C.ContainerTitle>
                           <div className='channel'>
                             <img className='channelIcon' src={item.channel.snippet.thumbnails.default.url} alt="tub Channel" />
@@ -90,7 +89,7 @@ function Watch(){
                         <div>
                         {item.video.statistics.commentCount} comentário(s)
                         </div>
-                      </>
+                      </div>
                     ))}
                 </div>
           </C.ContainerVideo>
@@ -98,11 +97,11 @@ function Watch(){
           {isFetchingRelated && <p>Carregando...</p> }
             {dataRelated?.map((item) => (
                 <VideoSideBar
+                key={`${item.id} ${item.snippet.title}`}
                 title={item.snippet.title} 
                 thumbnail={item.snippet.thumbnails.medium?.url} 
                 channelImage={item.snippet.channelTitle.charAt(0).toUpperCase()} 
                 channelName={item.snippet.channelTitle}
-                key={item.id}
                 onclick={() => { navigate('../mytube/watch?v=' +item.id); navIdVideo(item.id) } }
                 />
             ))}

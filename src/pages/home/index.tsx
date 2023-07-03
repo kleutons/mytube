@@ -23,7 +23,7 @@ function Home(){
                 <VideoComponent 
                 title={item.video.snippet.title} 
                 thumbnail={item.video.snippet.thumbnails.maxres?.url || item.video.snippet.thumbnails.high?.url} 
-                channelImage={item.channel.snippet.thumbnails.default?.url || 'img/default.jpg' } 
+                channelImage={item.channel.snippet.thumbnails.default?.url || 'img/lgChannel.jpg' } 
                 channelName={item.video.snippet.channelTitle}
                 details={`${formatViewCount(Number(item.video.statistics.viewCount))} visualizações - ${getPublishedTime(item.video.snippet.publishedAt)}`} 
                 key={item.video.id}
