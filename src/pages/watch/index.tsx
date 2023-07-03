@@ -35,6 +35,10 @@ function Watch(){
     const { data: dataRelated, isFetching: isFetchingRelated, error: errorRelated } =
     useFetchRelated<TypeVideos[]>(getIdVideo);
 
+    if(errorRelated){
+      console.log(errorRelated);
+    }
+
   return(
       <>
         <C.Container>
@@ -91,6 +95,7 @@ function Watch(){
                 </div>
           </C.ContainerVideo>
           <C.ContainerSideBar>
+          {isFetchingRelated && <p>Carregando...</p> }
             {dataRelated?.map((item) => (
                 <VideoSideBar
                 title={item.snippet.title} 
