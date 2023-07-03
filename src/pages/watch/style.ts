@@ -51,7 +51,7 @@ export const ContainerTitle = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     margin-top: 20px;
 
     @media(max-width: 900px){
@@ -64,29 +64,30 @@ export const ContainerTitle = styled.div`
         gap: 15px;
     }
 
-    >div.channel div.channelIcon{
-        min-width: 40px;
-        min-height: 40px;
+    >div.channel img.channelIcon{
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
-        background-color: #8d8df4;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
     >div.channel div.channelName h3{
         font-weight: bold;
+        font-size: 16px;
+        white-space: nowrap;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     >div.channel span{
         font-size: 13px;
     }
     >div.channel div.button{
-        min-width: 80px;
+        white-space: nowrap;
         background-color: #000;
         color: #fff;
         border-radius: 20px;
-        padding: 8px 25px;
-        margin-left: 20px;
+        padding: 8px 15px;
+        margin-left: 10px;
+        font-size: 13px;
         cursor: pointer;
     }
 
@@ -96,7 +97,7 @@ export const ContainerTitle = styled.div`
 export const ContainerBtns = styled.div`
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     
 
     svg{
@@ -116,6 +117,8 @@ export const ContainerBtns = styled.div`
     >div.btnLike div{
         padding: 10px;
         display: flex;
+        flex-direction: row;
+        white-space: nowrap;
         align-items: center;
         font-weight: 500;
     }
@@ -137,6 +140,7 @@ export const ContainerBtns = styled.div`
         border-radius: 30px;
         cursor: pointer;
         padding: 10px 15px;
+        font-size: 13px;
     }
     >div.share:hover{
         background-color: #0000001a;

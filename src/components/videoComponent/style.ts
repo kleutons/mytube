@@ -28,9 +28,7 @@ export const TitleContainer = styled.div`
     display: flex;
 `;
 
-export const ChannelImage = styled.div<{color?:string}>`
-    background-color: ${({color}) => color ? color : 'beige'};
-    color: ${({color}) => color ? '#fff' : 'currentColor'};
+export const ChannelImage = styled.img`
     min-width: 35px;
     height: 35px;
     display: flex;

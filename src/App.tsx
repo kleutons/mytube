@@ -12,6 +12,7 @@ import Library from './pages/library';
 import History from './pages/history';
 import ReportHistory from './pages/reportHistory';
 import Watch from './pages/watch';
+import { TestePage } from './pages/teste/teste';
 
  
 
@@ -33,6 +34,8 @@ function App() {
         <Route path='/mytube/history'       element={<LayoutMain> <History /> </LayoutMain>} />
         <Route path='/mytube/reporthistory' element={<LayoutMain> <ReportHistory /> </LayoutMain>} />
         <Route path='/mytube/watch'         element={<LayoutMain> <Watch /> </LayoutMain>} />
+
+        <Route path='/mytube/teste'         element={<LayoutMain> <TestePage /> </LayoutMain>} />
       </Routes>
     </BrowserRouter>
  

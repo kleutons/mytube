@@ -1,22 +1,19 @@
-
+import { useFetchListVideos } from "../../hooks/useFetch";
+import { Container } from "../home/style";
 import { VideoComponent } from "../../components/videoComponent";
-import CategoryBar from "../../components/categoryBar/categoryBar";
-import { Container } from "./style";
-import { useNavigate } from 'react-router-dom';
-import { formatViewCount, getPublishedTime } from '../../utils/formatVideo';
-import { TypeVideoWithChannel } from '../../types/videos';
-import { useFetchListVideos } from '../../hooks/useFetch';
+import { formatViewCount, getPublishedTime } from "../../utils/formatVideo";
+import { TypeVideoWithChannel } from "../../types/videos";
+import { useNavigate } from "react-router-dom";
 
 
-function Home(){
+export function TestePage(){
   const navigate =  useNavigate();
 
   const { data, isFetching } =
-  useFetchListVideos<TypeVideoWithChannel[]>();
+   useFetchListVideos<TypeVideoWithChannel[]>();
     
     return(
       <>
-        <CategoryBar />
         <Container>
             {isFetching && <p>Carregando...</p> }
             {data?.map((item) => (
@@ -33,6 +30,5 @@ function Home(){
         </Container>
       </>
         )
-}
 
-export default Home;
+}

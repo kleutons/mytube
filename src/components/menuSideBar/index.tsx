@@ -91,7 +91,7 @@ function MenuSideBar( {$openMenu, setOpenMenu, $screenWidth}: IProps){
                 Tecnologias usadas: Html, Css, JavaScript, React, TypeScript e NodeJs.<br />
                 <br />
                 Contato <br />
-                2023 - <a href="https://www.linkedin.com/in/kleuton-novais/" target="_blank"> Dev: Kleuton Novais</a>
+                2023 - <a href="https://www.linkedin.com/in/kleuton-novais/" target="_blank" rel="noreferrer" > Dev: Kleuton Novais</a>
                 </div>
             </ContentMenu>
         </Container>

@@ -5,6 +5,7 @@ const api = axios.create({
 })
 
 const API_KEY = 'AIzaSyBuLjyrS1VkFDQ6v4ycRkDG9uLNwPAee2A';
+// const API_KEY = process.env.REACT_API_KEY;
 
 export function fecthAxios(url:string, options?: AxiosRequestConfig){
     const retorno = api?.get(url, options)

@@ -2,11 +2,11 @@ import moment from "moment";
 
 export function formatViewCount(viewCount: number): string {
     if (viewCount >= 1000000) {
-        return `${(viewCount / 1000000).toFixed(0)} mi de visualizações`;
+        return `${(viewCount / 1000000).toFixed(0)} mi`;
     } else if (viewCount >= 1000) {
-        return `${(viewCount / 1000).toFixed(0)} mil visualizações`;
+        return `${(viewCount / 1000).toFixed(0)} mil`;
     } else {
-        return `${viewCount} visualizações`;
+        return `${viewCount}`;
     }
 }
 
