@@ -109,6 +109,7 @@ export function useFetchVideo<T = unknown>(getIdVideo:string | null){
     useEffect( () => {
         
         
+        
 
         if(!getIdVideo){
             
@@ -127,22 +128,18 @@ export function useFetchVideo<T = unknown>(getIdVideo:string | null){
         const fetchAndStoreData = async () => {
             if(storedData) {
                 const parsedData = JSON.parse(storedData).data;
-        
-                
-                
-
                 parsedData.forEach( (item:any) => {
-  
                     if(item?.video.id === getIdVideo){
                       const total = [{...item}];
                       setData(total)
                       shouldLoadVideo = true;
+                      setIsFetching(false);
+                      return;
                     }
                   })
-                setIsFetching(false);
-                return;
-
+                
             }
+
 
             if (!shouldLoadVideo) {
                 // Axios

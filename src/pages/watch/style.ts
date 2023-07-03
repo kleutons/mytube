@@ -160,4 +160,27 @@ export const ContainerDescription= styled.div`
     >div.statistics span{
         font-weight: bold;
     }
+
+    >div.txt{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        -webkit-box-orient: vertical; 
+    }
+
+    >button{
+        border: none;
+        background: transparent;
+        font-size: 13px;
+        font-weight: bold;
+        margin-top: 5px;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    >button:hover{
+        background: #fff9;
+    }
+
 `

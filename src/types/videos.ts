@@ -39,3 +39,32 @@ export type TypeVideoWithChannel ={
   video: TypeVideos,
   channel: TypeChannel
 }
+
+export type TypeVideosRelated = {
+  id: {
+    videoId:string
+      },
+  snippet: {
+    channelId: string,
+    title: string,
+    description:string,
+    thumbnails: {
+      medium:{
+        url: string
+      },
+      high: {
+        url: string
+      },
+      maxres: {
+        url: string;
+      }
+    }
+    channelTitle: string;
+    publishedAt: string;
+  },
+  statistics: {
+    viewCount: string;
+    likeCount: number;
+    commentCount: number;
+  }
+}

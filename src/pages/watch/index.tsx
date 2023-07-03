@@ -5,7 +5,7 @@ import { VideoSideBar } from '../../components/videoComponent';
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { formatViewCount, getPublishedTime } from '../../utils/formatVideo';
-import { TypeVideoWithChannel, TypeVideos } from '../../types/videos';
+import { TypeVideoWithChannel, TypeVideos, TypeVideosRelated } from '../../types/videos';
 import { useFetchRelated, useFetchVideo } from '../../hooks/useFetch';
 
 
@@ -15,6 +15,8 @@ function Watch(){
 
     
     const [getIdVideo, setGetIdVideo ] = useState(new URLSearchParams(location.search).get('v'));
+
+    const [showTxt, setShowTxt] = useState(false);
 
     // Construindo a URL completa do vídeo do YouTube
     const videoUrl = `https://www.youtube.com/embed/${getIdVideo}`;
@@ -27,17 +29,19 @@ function Watch(){
       
     const { data, isFetching, error } =
     useFetchVideo<TypeVideoWithChannel[]>(getIdVideo);
-    
+
     if(error){
       console.log(error);
     }
 
+
     const { data: dataRelated, isFetching: isFetchingRelated, error: errorRelated } =
-    useFetchRelated<TypeVideos[]>(getIdVideo);
+    useFetchRelated<TypeVideosRelated[]>(getIdVideo);
 
     if(errorRelated){
       console.log(errorRelated);
     }
+
 
   return(
       <>
@@ -84,7 +88,10 @@ function Watch(){
                             <span> Enviado {getPublishedTime(item.video.snippet.publishedAt)}</span>
                           </div>
                           <br />
-                          {item.video.snippet.description}
+                          <div className={ showTxt ? '' : 'txt'}>
+                            {item.video.snippet.description}
+                          </div>
+                          <button onClick={() => setShowTxt(!showTxt)}>Mostrar {showTxt ? 'menos' : 'mais' }</button>
                         </C.ContainerDescription>
                         <div>
                         {item.video.statistics.commentCount} comentário(s)
@@ -97,12 +104,12 @@ function Watch(){
           {isFetchingRelated && <p>Carregando...</p> }
             {dataRelated?.map((item) => (
                 <VideoSideBar
-                key={`${item.id} ${item.snippet.title}`}
+                key={`${item.id.videoId} ${item.snippet.title}`}
                 title={item.snippet.title} 
                 thumbnail={item.snippet.thumbnails.medium?.url} 
                 channelImage={item.snippet.channelTitle.charAt(0).toUpperCase()} 
                 channelName={item.snippet.channelTitle}
-                onclick={() => { navigate('../mytube/watch?v=' +item.id); navIdVideo(item.id) } }
+                onclick={() => { navigate('../mytube/watch?v=' +item.id.videoId); navIdVideo(item.id.videoId) } }
                 />
             ))}
             
