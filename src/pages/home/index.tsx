@@ -25,7 +25,7 @@ function Home(){
                 thumbnail={item.video.snippet.thumbnails.maxres?.url || item.video.snippet.thumbnails.high?.url} 
                 channelImage={item.channel.snippet.thumbnails.default?.url || 'img/default.jpg' } 
                 channelName={item.video.snippet.channelTitle}
-                details={`${formatViewCount(Number(item.video.statistics.viewCount))} - ${getPublishedTime(item.video.snippet.publishedAt)}`} 
+                details={`${formatViewCount(Number(item.video.statistics.viewCount))} visualizações - ${getPublishedTime(item.video.snippet.publishedAt)}`} 
                 key={item.video.id}
                 onclick={() => navigate('./watch?v=' +item.video.id)}
                 />

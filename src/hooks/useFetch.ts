@@ -175,7 +175,7 @@ export function useFetchVideo<T = unknown>(getIdVideo:string | null){
                             channel
                             };
                         });
-                        console.log(videosFull);
+                        
                         setData(videosFull);
                         
                     }).catch(errChannel => {
@@ -198,6 +198,61 @@ export function useFetchVideo<T = unknown>(getIdVideo:string | null){
         fetchAndStoreData();
         
     }, [categoryId, getIdVideo])
+
+    return { data, error, isFetching }
+}
+
+
+export function useFetchRelated<T = unknown>(getIdVideo?:string | null){
+
+    const  [data, setData] = useState<T | null>(null);
+    const  [isFetching, setIsFetching] = useState(true);
+    const  [error, setError] = useState<Error | null | string>(null);   
+    
+
+    useEffect( () => {
+        
+        
+        const fetchRelatedData = async () => {
+
+            if(!getIdVideo){
+            
+                setError('Falha, idVideo nulo!');
+                setIsFetching(false);
+                return;
+            }
+          
+            // Axios
+            api.get('/search',{ 
+                params:{
+                    key: API_KEY,
+                    part: 'snippet',
+                    maxResults: 12,
+                    regionCode: 'br',
+                    relatedToVideoId: getIdVideo,
+                    type: 'video'
+                    
+                }
+            })
+            .then(response => {
+                const fetchData  = response.data.items;                
+                setData(fetchData);
+            })
+            .catch( err =>{
+                setError(err);
+            })
+            .finally( () => {
+                setIsFetching(false);
+            })
+            
+            
+            
+        }
+        
+            
+        fetchRelatedData();
+        
+    }, [getIdVideo])
 
     return { data, error, isFetching }
 }
