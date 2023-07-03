@@ -5,7 +5,7 @@ import { VideoSideBar } from '../../components/videoComponent';
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { formatViewCount, getPublishedTime } from '../../utils/formatVideo';
-import { TypeVideoWithChannel, TypeVideos, TypeVideosRelated } from '../../types/videos';
+import { TypeVideoWithChannel, TypeVideosRelated } from '../../types/videos';
 import { useFetchRelated, useFetchVideo } from '../../hooks/useFetch';
 
 
