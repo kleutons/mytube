@@ -42,7 +42,7 @@ export function useFetchListVideos<T = unknown>(){
                 params:{
                     key: API_KEY,
                     videoCategoryId: categoryId,
-                    maxResults: '48',
+                    maxResults: '24',
                     part: 'snippet,statistics',
                     chart: 'mostPopular',
                     hl: 'pt_BR',
@@ -250,6 +250,76 @@ export function useFetchRelated<T = unknown>(getIdVideo?:string | null){
         fetchRelatedData();
         
     }, [getIdVideo])
+
+    return { data, error, isFetching }
+}
+
+
+export function useFetchSearch<T = unknown>(getSearch?:string | null){
+
+
+    const  [data, setData] = useState<T | null>(null);
+    const  [isFetching, setIsFetching] = useState(true);
+    const  [error, setError] = useState<Error | null>(null);   
+    
+    useEffect( () => {
+
+        const fetchAndStoreData = async () => {
+            
+            // Axios
+            api.get('/search',{ 
+                params:{
+                    key: API_KEY,                    
+                    maxResults: '15',
+                    q: 'getSearch',
+                    part: 'snippet',
+                    chart: 'mostPopular',
+                    hl: 'pt_BR',
+                    regionCode: 'br',
+                }
+            })
+            .then(response => {
+                const fetchData = response.data.items;
+                const channelIds = fetchData.map((video:TypeVideos) => video.snippet.channelId).join(',');
+
+                
+                api.get('/channels',{
+                    params:{
+                        key: API_KEY,
+                        id: channelIds,
+                        part: 'snippet'
+                    }
+                }).then(responseChannels => {
+                    const ListChannels = responseChannels.data.items;
+                    
+                    const videosFull = fetchData.map((video:TypeVideos) => {
+                        const channelId = video.snippet.channelId;
+                        const channel = ListChannels.find((item:TypeChannel) => item.id === channelId) || null;
+              
+                        return {
+                          video,
+                          channel
+                        };
+                    });
+                    setData(videosFull);
+
+                }).catch(errChannel => {
+                    setError(errChannel);
+                })
+               
+            })
+            .catch( err =>{
+                setError(err);
+            })
+            .finally( () => {
+                setIsFetching(false);
+            })
+        }
+        
+            
+        fetchAndStoreData();
+        
+    }, [])
 
     return { data, error, isFetching }
 }

@@ -17,7 +17,7 @@ function limitarTexto(texto:string, limite:number) {
     return texto;
 }
 
-function VideoComponent(props: Props){
+export function VideoComponent(props: Props){
     return(
         <C.Container onClick={props.onclick}>
             <C.ImageBanner alt="thumbnail" src={props.thumbnail} />
@@ -34,7 +34,7 @@ function VideoComponent(props: Props){
 }
 
 
-function VideoSideBar(props: Props){
+export function VideoSideBar(props: Props){
     return(
         <C.ContainerSideBar onClick={props.onclick}>
         <C.ImageBannerSideBar alt="thumbnail" src={props.thumbnail} />
@@ -50,4 +50,17 @@ function VideoSideBar(props: Props){
 }
 
 
-export { VideoComponent, VideoSideBar } ;
+export function VideoComponentSearch(props: Props){
+    return(
+        <C.ContainerSearch onClick={props.onclick}>
+            <C.ImageBanner alt="thumbnail" src={props.thumbnail} />
+            <C.TitleContainer >
+                <C.ChannelImage alt={`${props.channelName} image`} src={props.channelImage} />
+                <C.TextContainer>
+                    <C.Title>{limitarTexto(props.title, 50)}</C.Title>
+                    <C.TextCard>{props.channelName}</C.TextCard>                    
+                </C.TextContainer>
+            </C.TitleContainer>
+        </C.ContainerSearch>
+    )
+}

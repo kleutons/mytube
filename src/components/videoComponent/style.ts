@@ -75,3 +75,10 @@ export const ImageBannerSideBar = styled.img`
         border-radius: 0;
     }
 `;
+
+
+export const ContainerSearch = styled.div`
+    width: 100%;
+    margin: 8px 8px;
+    cursor: pointer;
+`;
