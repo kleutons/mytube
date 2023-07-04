@@ -3,7 +3,7 @@ import { Container } from "./style";
 function Shorts(){
     return(
         <Container>
-             Shorts
+             Shorts ...
         </Container>
         )
 }

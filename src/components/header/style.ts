@@ -10,6 +10,7 @@ export const Container = styled.header`
     left: 0;
     width: 100%;
     background-color: #fff;
+    z-index: 999;
 
     > svg{
         color: black;

@@ -116,7 +116,7 @@ function Watch(){
           </C.ContainerSideBar>
         </C.Container>
       </>
-        )
+  )
 }
 
 export default Watch;
