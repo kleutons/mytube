@@ -47,6 +47,12 @@ jobs:
       with:
         name: production-files
         path: ./build
+    
+    - name: Set up environment
+        env:
+          REACT_APP_YT_API_KEY: ${{ secrets.REACT_APP_YT_API_KEY }}
+        run: |
+          echo "REACT_APP_YT_API_KEY=$REACT_APP_YT_API_KEY" >> ./build/.env
 
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
