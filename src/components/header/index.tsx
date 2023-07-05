@@ -44,8 +44,10 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
     
     //Context clear imput
     const [showBtnClear, setShowBtnClear] = useState(false);
+    const [ inputValue, setInputVale ] = useState('');
     const inputBuscarRef = useRef<HTMLInputElement>(null);
     
+
     //Function Reset/ Clear Input
     function clearImput(){        
         setShowBtnClear(false);
@@ -53,6 +55,8 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
             inputBuscarRef.current.value = '';
           }
     }
+
+
 
      //Function click openSearch 
      function openSearch(){        
@@ -86,13 +90,32 @@ function Header({ screenWidth, setScreenWidth, openMenu, setOpenMenu}: IProps){
                                 <ButtonIcon onClick={() => openSearch()} svgIcon={<HiArrowSmallLeft />}  margin='0 3px' />  : null
                             } 
                 <SearchInputContainer>
-                    <SearchInput onChange={(event) => { setShowBtnClear(event.target.value !== ''); } } placeholder="Pesquisar" ref={inputBuscarRef} />
+                    <SearchInput onChange={(e) => 
+                        {
+                         const valueInput = e.target.value;
+                         setInputVale(valueInput);
+                         setShowBtnClear(valueInput !== ''); 
+                         } } placeholder="Pesquisar" ref={inputBuscarRef}
+                         
+                         onKeyUp={(e) =>{
+                            if( e.key === 'Enter'){
+                                navigate(`/mytube/results?search_query=${inputValue}`)
+                            }
+                         }}
+
+                         />
                     { showBtnClear ? 
                         <ButtonIcon onClick={clearImput} svgIcon={<HiXMark />} margin="0 -10px" /> : null 
                     }
                     
                 </SearchInputContainer>
-                <SearchButton>
+                <SearchButton onClick={() => {
+                    if(!inputValue){
+                        alert('Digite alguma palavra para pesquisar')
+                        return;
+                    }
+                    navigate(`/mytube/results?search_query=${inputValue}`)
+                }}>
                     <ButtonIcon svgIcon={<HiMagnifyingGlass />} />
                 </SearchButton>
                 <ButtonIcon svgIcon={<HiMicrophone />} margin="0 5px" hover />

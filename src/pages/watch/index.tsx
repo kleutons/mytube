@@ -5,7 +5,7 @@ import { VideoSideBar } from '../../components/videoComponent';
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { IoArrowRedoOutline } from "react-icons/io5";
 import { formatViewCount, getPublishedTime } from '../../utils/formatVideo';
-import { TypeVideoWithChannel, TypeVideosRelated } from '../../types/videos';
+import { TypeVideoWithChannel } from '../../types/videos';
 import { useFetchRelated, useFetchVideo } from '../../hooks/useFetch';
 
 
@@ -36,7 +36,7 @@ function Watch(){
 
 
     const { data: dataRelated, isFetching: isFetchingRelated, error: errorRelated } =
-    useFetchRelated<TypeVideosRelated[]>(getIdVideo);
+    useFetchRelated<TypeVideoWithChannel[]>(getIdVideo);
 
     if(errorRelated){
       console.log(errorRelated);
@@ -104,12 +104,12 @@ function Watch(){
           {isFetchingRelated && <p>Carregando...</p> }
             {dataRelated?.map((item) => (
                 <VideoSideBar
-                key={`${item.id.videoId} ${item.snippet.title}`}
-                title={item.snippet.title} 
-                thumbnail={item.snippet.thumbnails.medium?.url} 
-                channelImage={item.snippet.channelTitle.charAt(0).toUpperCase()} 
-                channelName={item.snippet.channelTitle}
-                onclick={() => { navigate('../mytube/watch?v=' +item.id.videoId); navIdVideo(item.id.videoId) } }
+                key={`${item.video.id} ${item.video.snippet.title}`}
+                title={item.video.snippet.title} 
+                thumbnail={item.video.snippet.thumbnails.medium?.url} 
+                channelImage={item.video.snippet.channelTitle.charAt(0).toUpperCase()} 
+                channelName={item.video.snippet.channelTitle}
+                onclick={() => { navigate('../mytube/watch?v=' +item.video.id); navIdVideo(item.video.id) } }
                 />
             ))}
             

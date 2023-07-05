@@ -20,7 +20,7 @@ export function useFetchListVideos<T = unknown>(){
     
     useEffect( () => {
         const CACHE_KEY = `vd_mytube_${categoryId}`;
-        const CACHE_EXPIRATION = 1000 * 60 * 60 * 5; // 3 horas em milissegundo
+        const CACHE_EXPIRATION = 1000 * 60 * 60 * 3; // 3 horas em milissegundo
         const storedData = localStorage.getItem(CACHE_KEY);
 
         const fetchAndStoreData = async () => {
@@ -42,7 +42,7 @@ export function useFetchListVideos<T = unknown>(){
                 params:{
                     key: API_KEY,
                     videoCategoryId: categoryId,
-                    maxResults: '24',
+                    maxResults: '48',
                     part: 'snippet,statistics',
                     chart: 'mostPopular',
                     hl: 'pt_BR',
@@ -107,9 +107,6 @@ export function useFetchVideo<T = unknown>(getIdVideo:string | null){
     
 
     useEffect( () => {
-        
-        
-        
 
         if(!getIdVideo){
             
@@ -200,56 +197,54 @@ export function useFetchVideo<T = unknown>(getIdVideo:string | null){
 }
 
 
-export function useFetchRelated<T = unknown>(getIdVideo?:string | null){
+export function useFetchRelated<T = unknown>(getIdVideo:string | null){
 
     const  [data, setData] = useState<T | null>(null);
     const  [isFetching, setIsFetching] = useState(true);
     const  [error, setError] = useState<Error | null | string>(null);   
     
+    const categoryId = useCategoryContext().categoryId;
 
     useEffect( () => {
         
-        
+        const CACHE_KEY = `vd_mytube_${categoryId}`;        
+        const storedData = localStorage.getItem(CACHE_KEY);
+        const storedDataSelect = storedData ? storedData : localStorage.getItem('vd_mytube_0');
+
         const fetchRelatedData = async () => {
 
-            if(!getIdVideo){
-            
-                setError('Falha, idVideo nulo!');
+            if(storedDataSelect) {
+                let parsedData = JSON.parse(storedDataSelect).data;
+                let itensSelecionados:any = [];
+                    
+                while (itensSelecionados.length < 12) {
+                    const indiceAleatorio = Math.floor(Math.random() * parsedData.length);
+
+                    const itemSelecionado = parsedData[indiceAleatorio];
+                    // Verificar se o item selecionado não é undefined
+                    if (itemSelecionado !== undefined) {
+                        // Adicionar o item selecionado à nova array
+                        itensSelecionados.push(itemSelecionado);
+                        // Remover o item selecionado da array original
+                        parsedData.splice(indiceAleatorio, 1);
+                    }
+                }
+
+                setData(itensSelecionados);
                 setIsFetching(false);
                 return;
+                
+            }else{
+                setError('error ao gerar videos realacionados')
             }
-          
-            // Axios
-            api.get('/search',{ 
-                params:{
-                    key: API_KEY,
-                    part: 'snippet',
-                    maxResults: 12,
-                    regionCode: 'br',
-                    relatedToVideoId: getIdVideo,
-                    type: 'video'
-                    
-                }
-            })
-            .then(response => {
-                const fetchData  = response.data.items;                
-                setData(fetchData);
-            })
-            .catch( err =>{
-                setError(err);
-            })
-            .finally( () => {
-                setIsFetching(false);
-            })
-            
-            
+
             
         }
         
             
         fetchRelatedData();
         
-    }, [getIdVideo])
+    }, [categoryId, getIdVideo])
 
     return { data, error, isFetching }
 }
@@ -270,10 +265,9 @@ export function useFetchSearch<T = unknown>(getSearch?:string | null){
             api.get('/search',{ 
                 params:{
                     key: API_KEY,                    
-                    maxResults: '15',
-                    q: 'getSearch',
+                    maxResults: '10',
+                    q: getSearch,
                     part: 'snippet',
-                    chart: 'mostPopular',
                     hl: 'pt_BR',
                     regionCode: 'br',
                 }
@@ -302,6 +296,8 @@ export function useFetchSearch<T = unknown>(getSearch?:string | null){
                         };
                     });
                     setData(videosFull);
+                    console.log(videosFull);
+
 
                 }).catch(errChannel => {
                     setError(errChannel);
@@ -319,7 +315,7 @@ export function useFetchSearch<T = unknown>(getSearch?:string | null){
             
         fetchAndStoreData();
         
-    }, [])
+    }, [getSearch])
 
     return { data, error, isFetching }
 }

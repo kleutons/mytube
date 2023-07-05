@@ -68,3 +68,8 @@ export type TypeVideosRelated = {
     commentCount: number;
   }
 }
+
+export type TypeVideoSearch ={
+  video: TypeVideosRelated,
+  channel: TypeChannel
+}

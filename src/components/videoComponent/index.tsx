@@ -6,6 +6,7 @@ interface Props{
     channelImage: string,
     colorchannelImage?: string
     channelName: string,
+    description?:string,
     details?: string,
     onclick?: () => void;
 }
@@ -53,14 +54,19 @@ export function VideoSideBar(props: Props){
 export function VideoComponentSearch(props: Props){
     return(
         <C.ContainerSearch onClick={props.onclick}>
-            <C.ImageBanner alt="thumbnail" src={props.thumbnail} />
-            <C.TitleContainer >
-                <C.ChannelImage alt={`${props.channelName} image`} src={props.channelImage} />
-                <C.TextContainer>
-                    <C.Title>{limitarTexto(props.title, 50)}</C.Title>
-                    <C.TextCard>{props.channelName}</C.TextCard>                    
-                </C.TextContainer>
-            </C.TitleContainer>
+            <div className="img">
+                <img alt="thumbnail" src={props.thumbnail} />
+            </div>
+            <div className="title">
+                <h2>
+                    {props.title}
+                </h2>
+                <div className="channel">
+                    <C.ChannelImage alt={`${props.channelName} image`} src={props.channelImage} />
+                    <C.TextCard>{props.channelName}</C.TextCard> 
+                </div>
+                <p>{props.description}</p> 
+            </div>
         </C.ContainerSearch>
     )
 }

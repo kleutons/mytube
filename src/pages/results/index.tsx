@@ -1,26 +1,39 @@
 import * as C from './style';
 import { NotFound } from '../../components/Icons/notFound';
 import { useFetchSearch } from '../../hooks/useFetch';
-import { TypeVideoWithChannel  } from '../../types/videos';
+import { TypeVideoSearch  } from '../../types/videos';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { VideoComponentSearch } from '../../components/videoComponent';
+import { useEffect, useState } from 'react';
 
 export default function Results(){
     const location = useLocation();
     const navigate =  useNavigate();
     
-    const search = new URLSearchParams(location.search).get('search_query');
+    const [search, setSearch ] = useState<string | null>(new URLSearchParams(location.search).get('search_query'));
 
+
+    useEffect( () => {
+        // Verifica se há alterações no parâmetro de busca na URL
+        const newSearchQuery = new URLSearchParams(location.search).get('search_query');
+
+        if(newSearchQuery !== search){
+            setSearch(newSearchQuery);
+        }
+
+    }, [location.search, search]) 
+
+    
     const { data, isFetching, error } =
-    useFetchSearch<TypeVideoWithChannel[]>(search);
-
+    useFetchSearch<TypeVideoSearch[]>(search);  
     if(error){
-      console.log(error);
-    }
+        console.log(error);
+      }
+    
 
     return(
         <C.Container >
-            {(!search || !data) && 
+            {!search && 
                 <>
                     <NotFound />
                     <h2>
@@ -34,20 +47,20 @@ export default function Results(){
             } 
             
             <div>
-                {isFetching && <p>Carregando...</p> }
+                {(isFetching  || !data) && <p>Carregando...</p> }
                 {data?.map((item) => (
-                        <VideoComponentSearch 
-                        key={item.video.id}
+                        <VideoComponentSearch   
+                        key={item.video.id.videoId}
                         title={item.video.snippet.title} 
                         thumbnail={item.video.snippet.thumbnails.maxres?.url || item.video.snippet.thumbnails.high?.url} 
                         channelImage={item.channel.snippet.thumbnails.default?.url || 'img/lgChannel.jpg' } 
                         channelName={item.video.snippet.channelTitle}
-                        onclick={() => navigate('./watch?v=' +item.video.id)}
+                        description={item.video.snippet.description}
+                        onclick={() => navigate('/mytube/watch?v=' +item.video.id.videoId)}
                         />
-                    )
-                )}
+                        )
+                    )}
             </div>
-
         </C.Container>
     )
 }

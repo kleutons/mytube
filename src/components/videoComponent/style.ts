@@ -79,6 +79,85 @@ export const ImageBannerSideBar = styled.img`
 
 export const ContainerSearch = styled.div`
     width: 100%;
-    margin: 8px 8px;
     cursor: pointer;
+    display: flex;
+    gap: 17px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+
+    
+    @media screen and (max-width: 770px) {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    >div.img{
+        min-width: 360px;
+        height: 202px;
+        border-radius: 12px;
+        margin-bottom: 5px;
+        background-color: #ccc;
+
+        @media screen and (max-width: 770px) {
+            min-width: 90%;
+            
+        }
+
+        >img{
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            background-color: #ccc;
+            
+            &:hover{
+            border-radius: 0;
+            }
+        }
+    }
+
+    >div.title{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        text-align: start;        
+        
+        h2{
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 20px;    
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            overflow: hidden;
+            -webkit-box-orient: vertical; 
+
+            
+            @media screen and (max-width: 900px) {
+                font-size: 16px;
+                margin-bottom: 10px;  
+            }
+        }
+
+        >div.channel{
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 7px;
+        }
+
+        p{
+            color: #7e7e7e;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            -webkit-box-orient: vertical; 
+
+            @media screen and (max-width: 900px) {
+                font-size: 13px;
+            }
+        }
+
+
+    
+    }
 `;
