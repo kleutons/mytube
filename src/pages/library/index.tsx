@@ -123,7 +123,7 @@ const SubPageHome = () => {
     const [error, setError] = useState('');
     const [showModal, setshowModal ] = useState(false);
     const [video_bd, setVideo_bd] = useState( getLocalStorage('video_bd') );
-    const [videosUser, setVideosUser ] = useState(user ? video_bd[user] : null);
+    const [videosUser, setVideosUser ] = useState(video_bd[user] || null);
 
     function openModal(){
         setshowModal(true);

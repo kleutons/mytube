@@ -28,7 +28,6 @@ function App() {
       <Routes>
         <Route path='/mytube/login'         element={<LayoutLogin> <Login /> </LayoutLogin>} />
         <Route path='/mytube/signup'        element={<LayoutLogin> <SingUp /> </LayoutLogin>} />
-        <Route path='/'                     element={<LayoutMain> <Home /> </LayoutMain>} />
         <Route path='/mytube'               element={<LayoutMain> <Home /> </LayoutMain>} />
         <Route path='/mytube/shorts'        element={<LayoutMain> <Shorts /> </LayoutMain>} />
         <Route path='/mytube/subscriptions' element={<LayoutMain> <Subscriptions /> </LayoutMain>} />
