@@ -119,11 +119,11 @@ const SubPageHome = () => {
     }
 
     const { user_data } = useAuth();
-    const [user, setUser] = useState(user_data && user_data.email ? user_data.email : null);    
+    const [user, setUser] = useState();    
     const [error, setError] = useState('');
     const [showModal, setshowModal ] = useState(false);
     const [video_bd, setVideo_bd] = useState( getLocalStorage('video_bd') );
-    const [videosUser, setVideosUser ] = useState(video_bd && video_bd[user] ? video_bd[user] : null);
+    const [videosUser, setVideosUser ] = useState([]);
 
     console.log(videosUser);
 
@@ -199,7 +199,7 @@ const SubPageHome = () => {
             id: number
         }
 
-        if(hasVideos[user]){ 
+        if(user &&  hasVideos[user]){ 
             // Filtra Array
             const updateVideos = hasVideos[user].filter( (data:IProps) => data.id !== id )
 
@@ -222,7 +222,7 @@ const SubPageHome = () => {
     
     useEffect(() => {
         setUser(user_data.email);
-        setVideosUser(video_bd[user]);
+        setVideosUser( user ? video_bd[user] : null);
     }, [user, video_bd, user_data.email]);
 
     function getPublishedTime(publishedAt: string) {
@@ -276,8 +276,8 @@ const SubPageHome = () => {
                 Enviar Vídeo
             </button>
             <C.ContainerVideoUser>
-                {
-                    videosUser?.map((data:Videos) => (
+                { videosUser &&
+                    videosUser.map((data:Videos) => (
                         // Realize as operações desejadas com cada vídeo
                         
                         <div key={`${data.id} ${data.title}`}>
