@@ -119,7 +119,7 @@ const SubPageHome = () => {
     }
 
     const { user_data } = useAuth();
-    const [user, setUser] = useState(user_data.email ?? null);    
+    const [user, setUser] = useState(user_data && user_data.email ? user_data.email : null);    
     const [error, setError] = useState('');
     const [showModal, setshowModal ] = useState(false);
     const [video_bd, setVideo_bd] = useState( getLocalStorage('video_bd') );
