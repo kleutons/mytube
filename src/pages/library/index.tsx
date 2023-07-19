@@ -119,12 +119,13 @@ const SubPageHome = () => {
     }
 
     const { user_data } = useAuth();
-    const [user, setUser] = useState();    
+    const [user, setUser] = useState(user_data.email);    
     const [error, setError] = useState('');
     const [showModal, setshowModal ] = useState(false);
     const [video_bd, setVideo_bd] = useState( getLocalStorage('video_bd') );
     const [videosUser, setVideosUser ] = useState([]);
 
+    console.log(user_data);
     console.log(videosUser);
 
     function openModal(){
@@ -221,10 +222,7 @@ const SubPageHome = () => {
 
     
     useEffect(() => {
-        setUser(user_data.email);
-        if(user){
-            setVideosUser(video_bd[user]);
-        }
+            setVideosUser(video_bd[user_data.email]);
     }, [user, video_bd, user_data.email]);
 
     function getPublishedTime(publishedAt: string) {
