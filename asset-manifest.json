@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mytube/static/css/main.e6c13ad2.css",
-    "main.js": "/mytube/static/js/main.2aafcb0b.js",
+    "main.js": "/mytube/static/js/main.a655a388.js",
     "static/media/land-img.png": "/mytube/static/media/land-img.ed5936a0a8f10321bb38.png",
     "index.html": "/mytube/index.html",
     "main.e6c13ad2.css.map": "/mytube/static/css/main.e6c13ad2.css.map",
-    "main.2aafcb0b.js.map": "/mytube/static/js/main.2aafcb0b.js.map"
+    "main.a655a388.js.map": "/mytube/static/js/main.a655a388.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.2aafcb0b.js"
+    "static/js/main.a655a388.js"
   ]
 }
