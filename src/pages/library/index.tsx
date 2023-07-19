@@ -222,7 +222,9 @@ const SubPageHome = () => {
     
     useEffect(() => {
         setUser(user_data.email);
-        setVideosUser( user ? video_bd[user] : null);
+        if(user){
+            setVideosUser(video_bd[user]);
+        }
     }, [user, video_bd, user_data.email]);
 
     function getPublishedTime(publishedAt: string) {
