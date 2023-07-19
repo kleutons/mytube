@@ -4,7 +4,7 @@ import {HiOutlineUserCircle } from "react-icons/hi2";
 import { ButtonText } from '../../components/button';
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Input from '../../components/Input';
 import { VideoComponent } from '../../components/videoComponent';
 import moment from "moment";
