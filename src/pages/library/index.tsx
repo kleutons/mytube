@@ -119,7 +119,7 @@ const SubPageHome = () => {
     }
 
     const { user_data } = useAuth();
-    const [user, setUser] = useState(user_data.email);    
+    const user = user_data.email;    
     const [error, setError] = useState('');
     const [showModal, setshowModal ] = useState(false);
     const [video_bd, setVideo_bd] = useState( getLocalStorage('video_bd') );
@@ -222,7 +222,7 @@ const SubPageHome = () => {
 
     
     useEffect(() => {
-            setVideosUser(video_bd[user_data.email]);
+            setVideosUser(video_bd[user]);
     }, [user, video_bd, user_data.email]);
 
     function getPublishedTime(publishedAt: string) {
