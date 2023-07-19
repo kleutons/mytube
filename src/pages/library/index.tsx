@@ -4,7 +4,7 @@ import {HiOutlineUserCircle } from "react-icons/hi2";
 import { ButtonText } from '../../components/button';
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Input from '../../components/Input';
 import { VideoComponent } from '../../components/videoComponent';
 import moment from "moment";
@@ -118,14 +118,21 @@ const SubPageHome = () => {
         return JSON.parse(localStorage.getItem(bd) || 'null') 
     }
 
+    // Verificar se o item 'video_bd' existe no localStorage
+    if (localStorage.getItem('video_bd') === null) {
+        // O item não existe, então criamos um novo 
+        const video_bd = {};       
+        localStorage.setItem("video_bd", JSON.stringify(video_bd));
+    }
+
     const { user_data } = useAuth();
     const user = user_data.email;    
     const [error, setError] = useState('');
     const [showModal, setshowModal ] = useState(false);
     const [video_bd, setVideo_bd] = useState( getLocalStorage('video_bd') );
-    const videosUser = video_bd['email@gmail.com']; 
+    const [videosUser, setVideosUser ] = useState([]);
 
-
+ 
     function openModal(){
         setshowModal(true);
     }
@@ -208,7 +215,7 @@ const SubPageHome = () => {
                 //Salva dados
                 localStorage.setItem("video_bd", JSON.stringify(hasVideos));
                 setVideo_bd( hasVideos );
-                alert('Vídeo Deletado Com Sucesso!')
+                alert('Vídeo Excluído Com Sucesso!')
                 return;
             }
         }else{
@@ -218,7 +225,11 @@ const SubPageHome = () => {
     }
 
 
-
+    
+    useEffect(() => {
+        
+            setVideosUser(video_bd[user]);
+    }, [user, video_bd, user_data.email]);
 
     function getPublishedTime(publishedAt: string) {
         const now = moment();
