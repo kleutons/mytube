@@ -123,15 +123,8 @@ const SubPageHome = () => {
     const [error, setError] = useState('');
     const [showModal, setshowModal ] = useState(false);
     const [video_bd, setVideo_bd] = useState( getLocalStorage('video_bd') );
-    const [videosUser, setVideosUser ] = useState(user ? video_bd[user] : []);
+    const videosUser = video_bd['email@gmail.com'];
 
-    if(!user){
-        console.log('user >> Nulo')
-    }else{
-        console.log(user);
-        console.log(video_bd[user]);
-        console.log(videosUser);
-    }
 
     function openModal(){
         setshowModal(true);
@@ -225,12 +218,7 @@ const SubPageHome = () => {
     }
 
 
-    
-    useEffect(() => {
-        if(user){
-            setVideosUser(video_bd[user]);
-        }
-    }, [user, video_bd, user_data.email]);
+
 
     function getPublishedTime(publishedAt: string) {
         const now = moment();
